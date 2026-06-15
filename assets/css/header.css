@@ -1,0 +1,103 @@
+/* Estilos exclusivos del header */
+.navbar-mycar {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-mycar .navbar-brand {
+    padding: 0;
+    margin-right: 20px;
+}
+
+.navbar-mycar .navbar-brand img {
+    height: 50px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.navbar-mycar .navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
+.navbar-mycar .nav-link {
+    color: rgba(255,255,255,0.9);
+    transition: all 0.3s ease;
+    margin: 0 5px;
+    font-weight: 500;
+}
+
+.navbar-mycar .nav-link:hover {
+    color: #ffc107;
+    transform: translateY(-2px);
+}
+
+.navbar-mycar .btn-login {
+    background: transparent;
+    border: 2px solid #ffc107;
+    color: #ffc107;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.navbar-mycar .btn-login:hover {
+    background: #ffc107;
+    color: #1e3c72;
+    transform: translateY(-2px);
+}
+
+.navbar-mycar .btn-register {
+    background: #ffc107;
+    border: 2px solid #ffc107;
+    color: #1e3c72;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.navbar-mycar .btn-register:hover {
+    background: transparent;
+    color: #ffc107;
+    transform: translateY(-2px);
+}
+
+.navbar-toggler {
+    background-color: rgba(255,255,255,0.2);
+    border: none;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+@media (max-width: 768px) {
+    .navbar-mycar .navbar-brand img {
+height: 40px;
+    }
+    .navbar-mycar .nav-link {
+margin: 10px 0;
+text-align: center;
+    }
+    .navbar-mycar .btn-login,
+    .navbar-mycar .btn-register {
+display: inline-block;
+margin: 5px;
+width: auto;
+text-align: center;
+    }
+    .navbar-nav {
+text-align: center;
+padding: 15px 0;
+    }
+    .d-flex {
+justify-content: center;
+margin-top: 10px;
+    }
+}
