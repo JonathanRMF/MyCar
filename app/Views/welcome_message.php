@@ -11,11 +11,14 @@
 </head>
 <body>
 
-<?php include 'header.html'; ?>
+<?php include 'nav.html'; ?>
 
 <!-- CONTENT -->
 <div class="container" id="content">
         
+<br><br>
+<p id="promocion">hola</p>
+<br><br>
 </div>
 
 <?php include 'footer.html'; ?>
