@@ -14,11 +14,17 @@
 <?php include 'nav.html'; ?>
 
 <!-- CONTENT -->
-<div class="container" id="content">
-        
-<br><br>
-<p id="promocion">hola</p>
-<br><br>
+<div class="container row" id="content">
+    <!-- tarjeta de promocion -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img id="promocion" src="<?= base_url('assets/imagenes/promocion.png') ?>" class="card-img-top" alt="Imagen intermedia">
+            <div class="card-body text-center">
+                <h5 class="card-title">¡Oferta Especial!</h5>
+                <p class="card-text">Producto destacado del día</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php include 'footer.html'; ?>
