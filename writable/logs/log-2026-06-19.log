@@ -1,0 +1,104 @@
+ERROR - 2026-06-19 00:28:27 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\app\Models\VehiculoModel.php(17): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\app\Controllers\VehiculoController.php(15): App\Models\VehiculoModel->getDisponibles()
+#8 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(974): App\Controllers\VehiculoController->index()
+#9 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VehiculoController))
+#10 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\app\Models\VehiculoModel.php(17): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\app\Controllers\VehiculoController.php(15): App\Models\VehiculoModel->getDisponibles()
+#7 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(974): App\Controllers\VehiculoController->index()
+#8 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VehiculoController))
+#9 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2026-06-19 00:28:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: vehiculos]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `vehiculos`
+WHERE `activo` = :activo:', [...], false)
+ 3 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\VehiculoModel.php(17): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\VehiculoController.php(15): App\Models\VehiculoModel->getDisponibles()
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\VehiculoController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VehiculoController))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-19 19:32:24 --> Error connecting to the database: mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\app\Models\VehiculoModel.php(17): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\app\Controllers\VehiculoController.php(15): App\Models\VehiculoModel->getDisponibles()
+#8 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(974): App\Controllers\VehiculoController->index()
+#9 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VehiculoController))
+#10 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\app\Models\VehiculoModel.php(17): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\app\Controllers\VehiculoController.php(15): App\Models\VehiculoModel->getDisponibles()
+#7 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(974): App\Controllers\VehiculoController->index()
+#8 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VehiculoController))
+#9 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp2\htdocs\MyCarCodeIgn\MyCar\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2026-06-19 19:32:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+[Method: GET, Route: vehiculos]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `vehiculos`
+WHERE `activo` = :activo:', [...], false)
+ 3 SYSTEMPATH\Model.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\VehiculoModel.php(17): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\VehiculoController.php(15): App\Models\VehiculoModel->getDisponibles()
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\VehiculoController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VehiculoController))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
