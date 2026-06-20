@@ -1,41 +1,19 @@
 <?php
 
-use CodeIgniter\Boot;
-use Config\Paths;
-
 /*
  *---------------------------------------------------------------
- * CHECK PHP VERSION
+ * APPLICATION FRONT CONTROLLER
  *---------------------------------------------------------------
- */
-
-$minPhpVersion = '8.2'; // If you update this, don't forget to update `spark`.
-if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
-    $message = sprintf(
-        'Your PHP version must be %s or higher to run CodeIgniter. Current version: %s',
-        $minPhpVersion,
-        PHP_VERSION,
-    );
-
-    header('HTTP/1.1 503 Service Unavailable.', true, 503);
-    echo $message;
-
-    exit(1);
-}
-
-/*
- *---------------------------------------------------------------
- * SET THE CURRENT DIRECTORY
- *---------------------------------------------------------------
+ *
+ * This file is the front controller. It bootstraps the
+ * CodeIgniter framework so it can handle the incoming request.
  */
 
 // Path to the front controller (this file)
 define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
 
 // Ensure the current directory is pointing to the front controller's directory
-if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
-    chdir(FCPATH);
-}
+chdir(FCPATH);
 
 /*
  *---------------------------------------------------------------
@@ -46,14 +24,28 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
  * and fires up an environment-specific bootstrapping.
  */
 
-// LOAD OUR PATHS CONFIG FILE
+// Load our paths config file
 // This is the line that might need to be changed, depending on your folder structure.
-require FCPATH . './app/Config/Paths.php';
-// ^^^ Change this line if you move your application folder
+require FCPATH . '../app/Config/Paths.php';
 
-$paths = new Paths();
+$paths = new Config\Paths();
 
-// LOAD THE FRAMEWORK BOOTSTRAP FILE
-require $paths->systemDirectory . '/Boot.php';
+// Location of the framework bootstrap file.
+require rtrim($paths->systemDirectory, '\\/ ') . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-exit(Boot::bootWeb($paths));
+$context = is_cli() ? 'php-cli' : 'web';
+
+// Load environment settings from .env files into $_SERVER and $_ENV
+require_once $paths->systemDirectory . '/Config/DotEnv.php';
+(new CodeIgniter\Config\DotEnv($paths->appDirectory . '/../'))->load();
+
+/*
+ *---------------------------------------------------------------
+ * LAUNCH THE APPLICATION
+ *---------------------------------------------------------------
+ * Now that everything is set up, it's time to actually fire
+ * up the engine. We start by initializing the Boot class with
+ * the paths and the context, then sending the bootstrapped object
+ * to handle the request.
+ */
+CodeIgniter\Boot::bootWeb($paths);
