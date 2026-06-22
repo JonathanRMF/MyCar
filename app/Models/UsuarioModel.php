@@ -6,6 +6,18 @@ use CodeIgniter\Model;
 
 class UsuarioModel extends Model
 {
+<<<<<<< HEAD
+    protected $table         = 'usuarios';
+    protected $primaryKey    = 'id';
+    protected $allowedFields = ['nombre', 'email', 'password', 'rol', 'activo'];
+
+    // Busca un usuario por su email (para el login)
+    public function findByEmail(string $email)
+    {
+        return $this->where('email', $email)->first();
+    }
+}
+=======
     protected $table            = 'usuarios';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
@@ -51,3 +63,4 @@ class UsuarioModel extends Model
         return $usuario;
     }
 }
+>>>>>>> 8c3e1c85c4cce36eb3d1d9943334147bcee5af82

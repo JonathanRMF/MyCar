@@ -6,6 +6,24 @@ use CodeIgniter\Model;
 
 class ClienteModel extends Model
 {
+<<<<<<< HEAD
+    protected $table         = 'clientes';
+    protected $primaryKey    = 'id';
+    protected $allowedFields = ['usuario_id', 'apellido', 'nombre', 'direccion', 'telefono', 'fecha_alta', 'activo'];
+
+    // Busca el cliente vinculado a un usuario (útil para saber quién es el cliente logueado)
+    public function findByUsuarioId(int $usuarioId)
+    {
+        return $this->where('usuario_id', $usuarioId)->first();
+    }
+
+    // Baja lógica — no borra, solo marca activo=0
+    public function bajaLogica(int $id)
+    {
+        return $this->update($id, ['activo' => 0]);
+    }
+}
+=======
     protected $table            = 'clientes';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
@@ -56,3 +74,4 @@ class ClienteModel extends Model
         return $this->update($idCliente, ['activo' => 1]);
     }
 }
+>>>>>>> 8c3e1c85c4cce36eb3d1d9943334147bcee5af82

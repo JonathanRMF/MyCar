@@ -1,0 +1,64 @@
+CRITICAL - 2026-06-18 22:21:33 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout/nav.php"
+[Method: GET, Route: login]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('layout/nav.php')
+ 2 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('layout/nav', [], true)
+ 3 APPPATH\Views\auth\login.php(1): view('layout/nav')
+ 4 SYSTEMPATH\View\View.php(240): include('C:\\xampp2\\htdocs\\MyCarCodeIgn\\MyCar\\app\\Views\\auth\\login.php')
+ 5 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('auth/login', [], true)
+ 7 APPPATH\Controllers\AuthController.php(17): view('auth/login')
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\AuthController->login()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-06-18 22:25:39 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout/nav.php"
+[Method: GET, Route: login]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('layout/nav.php')
+ 2 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('layout/nav', [], true)
+ 3 APPPATH\Views\auth\login.php(1): view('layout/nav')
+ 4 SYSTEMPATH\View\View.php(240): include('C:\\xampp2\\htdocs\\MyCarCodeIgn\\MyCar\\app\\Views\\auth\\login.php')
+ 5 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('auth/login', [], true)
+ 7 APPPATH\Controllers\AuthController.php(17): view('auth/login')
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\AuthController->login()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-06-18 22:26:32 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout/nav.php"
+[Method: GET, Route: login]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('layout/nav.php')
+ 2 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('layout/nav', [], true)
+ 3 APPPATH\Views\auth\login.php(1): view('layout/nav')
+ 4 SYSTEMPATH\View\View.php(240): include('C:\\xampp2\\htdocs\\MyCarCodeIgn\\MyCar\\app\\Views\\auth\\login.php')
+ 5 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('auth/login', [], true)
+ 7 APPPATH\Controllers\AuthController.php(17): view('auth/login')
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\AuthController->login()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-06-18 22:38:28 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout/nav.php"
+[Method: GET, Route: login]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('layout/nav.php')
+ 2 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('layout/nav', [], true)
+ 3 APPPATH\Views\auth\login.php(1): view('layout/nav')
+ 4 SYSTEMPATH\View\View.php(240): include('C:\\xampp2\\htdocs\\MyCarCodeIgn\\MyCar\\app\\Views\\auth\\login.php')
+ 5 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('auth/login', [], true)
+ 7 APPPATH\Controllers\AuthController.php(17): view('auth/login')
+ 8 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\AuthController->login()
+ 9 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+10 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
