@@ -1,0 +1,128 @@
+/* ESTILOS DEL FOOTER MY CAR - FONDO GRADIENTE AZUL */
+.footer-mycar {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 50px 0 20px;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-mycar a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-mycar a:hover {
+    color: #ffc107;
+    transform: translateX(5px);
+}
+
+.footer-mycar h5, 
+.footer-mycar h6 {
+    color: #ffc107;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer-mycar .contact-info i {
+    width: 30px;
+    color: #ffc107;
+}
+
+.contact-info li {
+    margin-bottom: 12px;
+    list-style: none;
+}
+
+.social-icons a {
+    font-size: 24px;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+    color: #ffc107;
+}
+
+.app-badge {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    transition: all 0.3s;
+    display: inline-block;
+    width: auto;
+}
+
+.app-badge:hover {
+    background: rgba(255,255,255,0.25);
+    transform: scale(1.05);
+}
+
+.app-badge i {
+    font-size: 40px;
+    color: #a4c639;
+}
+
+.payment-icons i {
+    font-size: 32px;
+    margin-right: 12px;
+    background: white;
+    padding: 8px;
+    border-radius: 8px;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.payment-icons i:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.footer-mycar .border-top {
+    border-color: rgba(255,255,255,0.2) !important;
+}
+
+.vision-text {
+    font-style: italic;
+    border-left: 3px solid #ffc107;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.stats-badge {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 13px;
+    display: inline-block;
+}
+
+.footer-mycar hr {
+    opacity: 0.3;
+    background-color: white;
+    height: 1px;
+}
+
+.footer-mycar ul {
+    padding-left: 0;
+}
+
+.footer-mycar ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+/* Para que el footer quede abajo */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding: 40px 0;
+}

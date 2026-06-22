@@ -30,14 +30,8 @@ require FCPATH . '../app/Config/Paths.php';
 
 $paths = new Config\Paths();
 
-// Location of the framework bootstrap file.
-require rtrim($paths->systemDirectory, '\\/ ') . DIRECTORY_SEPARATOR . 'bootstrap.php';
-
-$context = is_cli() ? 'php-cli' : 'web';
-
-// Load environment settings from .env files into $_SERVER and $_ENV
-require_once $paths->systemDirectory . '/Config/DotEnv.php';
-(new CodeIgniter\Config\DotEnv($paths->appDirectory . '/../'))->load();
+// Location of the framework boot file.
+require_once rtrim($paths->systemDirectory, '\\/ ') . DIRECTORY_SEPARATOR . 'Boot.php';
 
 /*
  *---------------------------------------------------------------

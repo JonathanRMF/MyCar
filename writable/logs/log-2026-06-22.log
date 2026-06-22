@@ -1,0 +1,13 @@
+CRITICAL - 2026-06-22 16:58:33 --> ErrorException: Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'CLI: /'. in /opt/lampp/htdocs/facultad/Topicos TPI/MyCar/system/CodeIgniter.php:1024
+Stack trace:
+#0 /opt/lampp/htdocs/facultad/Topicos TPI/MyCar/system/CodeIgniter.php(1024): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound()
+#1 /opt/lampp/htdocs/facultad/Topicos TPI/MyCar/system/CodeIgniter.php(369): CodeIgniter\CodeIgniter->display404errors()
+#2 /opt/lampp/htdocs/facultad/Topicos TPI/MyCar/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#3 /opt/lampp/htdocs/facultad/Topicos TPI/MyCar/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#4 /opt/lampp/htdocs/facultad/Topicos TPI/MyCar/public/index.php(45): CodeIgniter\Boot::bootWeb()
+#5 Command line code(1): require('...')
+#6 {main}
+  thrown
+[Method: CLI, Route: /]
+in SYSTEMPATH/CodeIgniter.php on line 1024.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
