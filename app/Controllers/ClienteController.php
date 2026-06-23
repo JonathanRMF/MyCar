@@ -22,11 +22,12 @@ class ClienteController extends BaseController
     public function crearPost()
     {
         $rules = [
-            'nombre'   => 'required',
-            'apellido' => 'required',
-            'telefono' => 'required',
-            'email'    => 'required|valid_email',
-            'password' => 'required|min_length[6]',
+            'nombre'    => 'required|min_length[2]|max_length[100]',
+            'apellido'  => 'required|min_length[2]|max_length[100]',
+            'direccion' => 'permit_empty|max_length[200]',
+            'telefono'  => 'required|min_length[6]|max_length[30]',
+            'email'     => 'required|valid_email|is_unique[usuarios.email]',
+            'password'  => 'required|min_length[6]',
         ];
 
         if (!$this->validate($rules)) {
@@ -78,9 +79,10 @@ class ClienteController extends BaseController
     public function editarPost(int $id)
     {
         $rules = [
-            'nombre'   => 'required',
-            'apellido' => 'required',
-            'telefono' => 'required',
+            'nombre'    => 'required|min_length[2]|max_length[100]',
+            'apellido'  => 'required|min_length[2]|max_length[100]',
+            'direccion' => 'permit_empty|max_length[200]',
+            'telefono'  => 'required|min_length[6]|max_length[30]',
         ];
 
         if (!$this->validate($rules)) {
@@ -101,10 +103,18 @@ class ClienteController extends BaseController
             ->with('exito', 'Cliente actualizado correctamente.');
     }
 
-    public function bajaLogica(int $id)
+        public function bajaLogica(int $id)
     {
         $model = new ClienteModel();
+        $cliente = $model->find($id);
+
+        if (!$cliente) {
+            return redirect()->to('/admin/clientes')
+                ->with('error', 'Cliente no encontrado.');
+        }
+
         $model->bajaLogica($id);
+
         return redirect()->to('/admin/clientes')
             ->with('exito', 'Cliente dado de baja correctamente.');
     }

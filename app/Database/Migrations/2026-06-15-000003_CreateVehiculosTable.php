@@ -15,6 +15,11 @@ class CreateVehiculosTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'categoria' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 50,
+                'null'       => true,
+            ],
             'marca' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 60,
@@ -45,15 +50,24 @@ class CreateVehiculosTable extends Migration
                 'type'       => 'DECIMAL',
                 'constraint' => '10,2',
             ],
+            'descripcion' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+            'imagen' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 150,
+                'null'       => true,
+            ],
             'activo' => [
                 'type'       => 'TINYINT',
                 'constraint' => 1,
-                'default'    => 1, // baja logica del vehiculo
+                'default'    => 1,
             ],
             'disponible' => [
                 'type'       => 'TINYINT',
                 'constraint' => 1,
-                'default'    => 1, // 0 mientras esta alquilado actualmente
+                'default'    => 1,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -64,6 +78,7 @@ class CreateVehiculosTable extends Migration
                 'null' => true,
             ],
         ]);
+
         $this->forge->addKey('id', true);
         $this->forge->createTable('vehiculos');
     }

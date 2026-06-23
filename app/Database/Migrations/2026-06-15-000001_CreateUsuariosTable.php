@@ -21,7 +21,7 @@ class CreateUsuariosTable extends Migration
             ],
             'password' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 255, // hash, nunca texto plano
+                'constraint' => 255,
             ],
             'rol' => [
                 'type'       => 'ENUM',
@@ -32,16 +32,16 @@ class CreateUsuariosTable extends Migration
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
-                'null'       => true, // null si rol = admin
+                'null'       => true,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
             ],
         ]);
+
         $this->forge->addKey('id', true);
         $this->forge->addUniqueKey('email');
-        $this->forge->addForeignKey('id_cliente', 'clientes', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('usuarios');
     }
 

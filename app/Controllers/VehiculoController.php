@@ -12,7 +12,7 @@ class VehiculoController extends BaseController
         $model = new VehiculoModel();
 
         $data = [
-            'vehiculos'  => $model->getDisponibles(),
+            'vehiculos'  => $model->disponiblesParaAlquilar(),
             'categorias' => ['Auto', 'Camioneta', 'SUV', 'Deportivo', 'Van'],
         ];
 
@@ -62,13 +62,14 @@ class VehiculoController extends BaseController
 
     public function crearPost()
     {
-        $rules = [
-            'marca'      => 'required',
-            'modelo'     => 'required',
-            'categoria'  => 'required',
-            'anio'       => 'required|numeric',
-            'precio_dia' => 'required|numeric',
-            'plazas'     => 'required|numeric',
+                $rules = [
+            'marca'       => 'required|min_length[2]|max_length[60]',
+            'modelo'      => 'required|min_length[2]|max_length[60]',
+            'categoria'   => 'required',
+            'anio'        => 'required|integer|greater_than_equal_to[1990]|less_than_equal_to[2026]',
+            'precio_dia'  => 'required|decimal|greater_than[0]',
+            'plazas'      => 'required|integer|greater_than[0]',
+            'kilometraje' => 'permit_empty|integer|greater_than_equal_to[0]',
         ];
 
         if (!$this->validate($rules)) {
@@ -90,6 +91,7 @@ class VehiculoController extends BaseController
             'descripcion' => $this->request->getPost('descripcion'),
             'imagen'      => $this->request->getPost('imagen'),
             'activo'      => 1,
+            'disponible' => 1,
         ]);
 
         return redirect()->to('/admin/vehiculos')
@@ -110,13 +112,14 @@ class VehiculoController extends BaseController
 
     public function editarPost(int $id)
     {
-        $rules = [
-            'marca'      => 'required',
-            'modelo'     => 'required',
-            'categoria'  => 'required',
-            'anio'       => 'required|numeric',
-            'precio_dia' => 'required|numeric',
-            'plazas'     => 'required|numeric',
+                $rules = [
+            'marca'       => 'required|min_length[2]|max_length[60]',
+            'modelo'      => 'required|min_length[2]|max_length[60]',
+            'categoria'   => 'required',
+            'anio'        => 'required|integer|greater_than_equal_to[1990]|less_than_equal_to[2026]',
+            'precio_dia'  => 'required|decimal|greater_than[0]',
+            'plazas'      => 'required|integer|greater_than[0]',
+            'kilometraje' => 'permit_empty|integer|greater_than_equal_to[0]',
         ];
 
         if (!$this->validate($rules)) {

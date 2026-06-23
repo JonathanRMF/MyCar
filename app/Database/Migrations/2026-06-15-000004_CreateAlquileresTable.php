@@ -15,12 +15,12 @@ class CreateAlquileresTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'id_vehiculo' => [
+            'vehiculo_id' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
             ],
-            'id_cliente' => [
+            'cliente_id' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
@@ -32,16 +32,24 @@ class CreateAlquileresTable extends Migration
                 'type'       => 'INT',
                 'constraint' => 5,
             ],
-            'fecha_devolucion_real' => [
-                'type' => 'DATE',
-                'null' => true,
+            'monto_total' => [
+                'type'       => 'DECIMAL',
+                'constraint' => '10,2',
+                'default'    => 0,
+            ],
+            'devuelto' => [
+                'type'       => 'TINYINT',
+                'constraint' => 1,
+                'default'    => 0,
+            ],
+            'activo' => [
+                'type'       => 'TINYINT',
+                'constraint' => 1,
+                'default'    => 1,
             ],
             'estado' => [
-                // reservado: el cliente pidio, el admin no confirmo todavia
-                // alquilado: el admin confirmo, el vehiculo esta en uso
-                // finalizado: ya se devolvio el vehiculo
-                'type'       => 'ENUM',
-                'constraint' => ['reservado', 'alquilado', 'finalizado'],
+                'type'       => 'VARCHAR',
+                'constraint' => 20,
                 'default'    => 'reservado',
             ],
             'created_at' => [
@@ -53,9 +61,10 @@ class CreateAlquileresTable extends Migration
                 'null' => true,
             ],
         ]);
+
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('id_vehiculo', 'vehiculos', 'id', 'CASCADE', 'RESTRICT');
-        $this->forge->addForeignKey('id_cliente', 'clientes', 'id', 'CASCADE', 'RESTRICT');
+        $this->forge->addForeignKey('vehiculo_id', 'vehiculos', 'id', 'CASCADE', 'RESTRICT');
+        $this->forge->addForeignKey('cliente_id', 'clientes', 'id', 'CASCADE', 'RESTRICT');
         $this->forge->createTable('alquileres');
     }
 

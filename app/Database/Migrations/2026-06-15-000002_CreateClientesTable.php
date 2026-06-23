@@ -15,6 +15,12 @@ class CreateClientesTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'usuario_id' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
+                'null'       => true,
+            ],
             'nombre' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
@@ -39,7 +45,7 @@ class CreateClientesTable extends Migration
             'activo' => [
                 'type'       => 'TINYINT',
                 'constraint' => 1,
-                'default'    => 1, // 1 = activo, 0 = dado de baja (baja logica)
+                'default'    => 1,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -50,7 +56,9 @@ class CreateClientesTable extends Migration
                 'null' => true,
             ],
         ]);
+
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('usuario_id', 'usuarios', 'id', 'SET NULL', 'CASCADE');
         $this->forge->createTable('clientes');
     }
 

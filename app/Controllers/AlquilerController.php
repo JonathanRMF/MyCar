@@ -53,7 +53,7 @@ class AlquilerController extends BaseController
         $montoTotal    = $vehiculo['precio_dia'] * $cantidadDias;
 
         $alquilerModel = new AlquilerModel();
-        $alquilerModel->insert([
+        $alquilerModel->registrarReserva([
             'vehiculo_id'   => $vehiculo['id'],
             'cliente_id'    => $cliente['id'],
             'fecha_desde'   => $this->request->getPost('fecha_desde'),
@@ -107,18 +107,28 @@ class AlquilerController extends BaseController
 
     // Admin confirma una reserva como alquiler activo
     public function confirmarAlquiler(int $id)
-    {
-        $model = new AlquilerModel();
-        $model->update($id, ['devuelto' => 0]); // ya estaba en 0, pero marca que fue revisado
+{
+    $model = new AlquilerModel();
+
+    if (!$model->confirmarAlquiler($id)) {
         return redirect()->to('/admin/alquileres')
-            ->with('exito', 'Alquiler confirmado.');
+            ->with('error', 'No se pudo confirmar el alquiler.');
     }
 
+    return redirect()->to('/admin/alquileres')
+        ->with('exito', 'Alquiler confirmado correctamente.');
+}
+
     // Registrar devolución del vehículo
-    public function registrarDevolucion(int $id)
+        public function registrarDevolucion(int $id)
     {
         $model = new AlquilerModel();
-        $model->registrarDevolucion($id);
+
+        if (!$model->registrarDevolucion($id)) {
+            return redirect()->to('/admin/alquileres')
+                ->with('error', 'No se pudo registrar la devolución.');
+        }
+
         return redirect()->to('/admin/alquileres')
             ->with('exito', 'Devolución registrada correctamente.');
     }

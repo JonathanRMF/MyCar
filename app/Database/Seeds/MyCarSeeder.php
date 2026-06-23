@@ -11,19 +11,19 @@ class MyCarSeeder extends Seeder
         // --- Vehiculos de ejemplo ---
         $vehiculos = [
             [
-                'marca' => 'Toyota', 'modelo' => 'Corolla', 'anio' => 2022,
+                'marca' => 'Toyota', 'modelo' => 'Corolla', 'categoria' => 'Auto', 'anio' => 2022,
                 'plazas' => 5, 'motor' => '1.8 Nafta', 'kilometraje' => 32000,
                 'precio_dia' => 18000.00, 'activo' => 1, 'disponible' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'marca' => 'Volkswagen', 'modelo' => 'Gol Trend', 'anio' => 2020,
+                'marca' => 'Volkswagen', 'modelo' => 'Gol Trend', 'categoria' => 'Auto', 'anio' => 2020,
                 'plazas' => 5, 'motor' => '1.6 Nafta', 'kilometraje' => 58000,
                 'precio_dia' => 12000.00, 'activo' => 1, 'disponible' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'marca' => 'Ford', 'modelo' => 'Ranger', 'anio' => 2023,
+                'marca' => 'Ford', 'modelo' => 'Ranger','categoria' => 'Camioneta', 'anio' => 2023,
                 'plazas' => 5, 'motor' => '3.2 Diesel', 'kilometraje' => 15000,
                 'precio_dia' => 35000.00, 'activo' => 1, 'disponible' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
@@ -47,6 +47,7 @@ class MyCarSeeder extends Seeder
         // Password en texto plano solo aca, en el seeder, para que sepas con que loguear.
         // Se guarda hasheado, jamas en texto plano.
         $this->db->table('usuarios')->insert([
+            'nombre'   => 'Administrador',
             'email'      => 'admin@mycar.com',
             'password'   => password_hash('admin123', PASSWORD_DEFAULT),
             'rol'        => 'admin',
