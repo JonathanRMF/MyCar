@@ -1,5 +1,4 @@
 <?php $vehiculo = $vehiculo ?? []; ?>
-
 <div class="container my-5" style="max-width:620px;">
 
     <h2 class="mb-4"><?= $vehiculo ? 'Editar vehículo' : 'Nuevo vehículo' ?></h2>
@@ -15,7 +14,9 @@
         </div>
     <?php endif; ?>
 
-    <?php $accion = $vehiculo ? "/admin/vehiculos/editar/{$vehiculo['id']}" : '/admin/vehiculos/crear'; ?>
+    <?php
+        $accion = $vehiculo ? "/admin/vehiculos/editar/{$vehiculo['id']}" : '/admin/vehiculos/crear';
+    ?>
 
     <form action="<?= $accion ?>" method="post">
         <?= csrf_field() ?>
@@ -61,19 +62,19 @@
             <div class="col-md-6 mb-3">
                 <label class="form-label">Motor</label>
                 <input type="text" name="motor" class="form-control"
-                        value="<?= old('motor', $vehiculo['motor'] ?? '') ?>">
+                       value="<?= old('motor', $vehiculo['motor'] ?? '') ?>">
             </div>
             <div class="col-md-6 mb-3">
                 <label class="form-label">Kilometraje</label>
                 <input type="number" name="kilometraje" class="form-control"
-                        value="<?= old('kilometraje', $vehiculo['kilometraje'] ?? '') ?>">
+                       value="<?= old('kilometraje', $vehiculo['kilometraje'] ?? '') ?>">
             </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Precio por día ($) *</label>
             <input type="number" step="0.01" name="precio_dia" class="form-control"
-                    value="<?= old('precio_dia', $vehiculo['precio_dia'] ?? '') ?>" required>
+                   value="<?= old('precio_dia', $vehiculo['precio_dia'] ?? '') ?>" required>
         </div>
 
         <div class="mb-3">
@@ -84,7 +85,7 @@
         <div class="mb-4">
             <label class="form-label">Nombre de imagen</label>
             <input type="text" name="imagen" class="form-control" placeholder="auto.jpg"
-                    value="<?= old('imagen', $vehiculo['imagen'] ?? '') ?>">
+                   value="<?= old('imagen', $vehiculo['imagen'] ?? '') ?>">
             <div class="form-text">El archivo debe estar en /assets/imagenes/</div>
         </div>
 

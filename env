@@ -31,15 +31,6 @@ app.baseURL = 'http://localhost/MyCarCodeIgn/MyCar/public/'
 # DATABASE
 #--------------------------------------------------------------------
 
-<<<<<<< HEAD
-database.default.hostname = localhost
-database.default.database = mycar_db
-database.default.username = root
-database.default.password = 
-database.default.DBDriver = MySQLi
-database.default.DBPrefix =
-database.default.port = 3306
-=======
 # database.default.hostname = localhost
 # database.default.database = mycar_db
 # database.default.username = root
@@ -47,7 +38,6 @@ database.default.port = 3306
 # database.default.DBDriver = MySQLi
 # database.default.DBPrefix =
 # database.default.port = 3306
->>>>>>> 8c3e1c85c4cce36eb3d1d9943334147bcee5af82
 
 # If you use MySQLi as tests, first update the values of Config\Database::$tests.
 # database.tests.hostname = localhost

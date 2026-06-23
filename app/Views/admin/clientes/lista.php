@@ -1,5 +1,3 @@
-<?php $vehiculos = $vehiculos ?? []; ?>
-
 <div class="container my-5">
 
     <?php if (session()->getFlashdata('exito')): ?>
