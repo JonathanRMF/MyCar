@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 use App\Models\ClienteModel;
-use App\Services\UsuarioService;
+use App\Models\UsuarioModel;
 
 class ClienteController extends BaseController
 {
     public function adminIndex()
     {
-        $model   = new ClienteModel();
-        $data    = ['clientes' => $model->findAll()];
+        $model = new ClienteModel();
+        $data  = ['clientes' => $model->findAll()];
         return view('layout/nav') . view('admin/clientes/lista', $data) . view('layout/footer');
     }
 
@@ -31,36 +31,34 @@ class ClienteController extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->to('/admin/clientes/crear')
+            return redirect()->to(base_url('admin/clientes/crear'))
                 ->with('errores', $this->validator->getErrors())
                 ->withInput();
         }
 
-        $usuarioService = new UsuarioService();
+        $usuarioModel = new UsuarioModel();
+        $clienteModel = new ClienteModel();
 
-        $usuarioId = $usuarioService->registerClientUser(
-            [
-                'email'    => $this->request->getPost('email'),
-                'password' => $this->request->getPost('password'),
-                'rol'      => 'cliente',
-            ],
-            [
-                'nombre'     => $this->request->getPost('nombre'),
-                'apellido'   => $this->request->getPost('apellido'),
-                'direccion'  => $this->request->getPost('direccion'),
-                'telefono'   => $this->request->getPost('telefono'),
-                'fecha_alta' => date('Y-m-d'),
-                'activo'     => 1,
-            ]
-        );
+        // 1) Crear usuario
+        $usuarioId = $usuarioModel->insert([
+            'nombre'   => $this->request->getPost('nombre'),
+            'email'    => $this->request->getPost('email'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'rol'      => 'cliente',
+        ]);
 
-        if ($usuarioId === false) {
-            return redirect()->to('/admin/clientes/crear')
-                ->with('errores', $usuarioService->getErrors())
-                ->withInput();
-        }
+        // 2) Crear cliente vinculado
+        $clienteModel->insert([
+            'usuario_id' => $usuarioId,
+            'nombre'     => $this->request->getPost('nombre'),
+            'apellido'   => $this->request->getPost('apellido'),
+            'direccion'  => $this->request->getPost('direccion'),
+            'telefono'   => $this->request->getPost('telefono'),
+            'fecha_alta' => date('Y-m-d'),
+            'activo'     => 1,
+        ]);
 
-        return redirect()->to('/admin/clientes')
+        return redirect()->to(base_url('admin/clientes'))
             ->with('exito', 'Cliente creado correctamente.');
     }
 
@@ -70,7 +68,8 @@ class ClienteController extends BaseController
         $cliente = $model->find($id);
 
         if (!$cliente) {
-            return redirect()->to('/admin/clientes')->with('error', 'Cliente no encontrado.');
+            return redirect()->to(base_url('admin/clientes'))
+                ->with('error', 'Cliente no encontrado.');
         }
 
         return view('layout/nav') . view('admin/clientes/form', ['cliente' => $cliente]) . view('layout/footer');
@@ -86,7 +85,7 @@ class ClienteController extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->to("/admin/clientes/editar/$id")
+            return redirect()->to(base_url("admin/clientes/editar/$id"))
                 ->with('errores', $this->validator->getErrors())
                 ->withInput();
         }
@@ -99,23 +98,23 @@ class ClienteController extends BaseController
             'telefono'  => $this->request->getPost('telefono'),
         ]);
 
-        return redirect()->to('/admin/clientes')
+        return redirect()->to(base_url('admin/clientes'))
             ->with('exito', 'Cliente actualizado correctamente.');
     }
 
-        public function bajaLogica(int $id)
+    public function bajaLogica(int $id)
     {
-        $model = new ClienteModel();
+        $model   = new ClienteModel();
         $cliente = $model->find($id);
 
         if (!$cliente) {
-            return redirect()->to('/admin/clientes')
+            return redirect()->to(base_url('admin/clientes'))
                 ->with('error', 'Cliente no encontrado.');
         }
 
         $model->bajaLogica($id);
 
-        return redirect()->to('/admin/clientes')
+        return redirect()->to(base_url('admin/clientes'))
             ->with('exito', 'Cliente dado de baja correctamente.');
     }
 }

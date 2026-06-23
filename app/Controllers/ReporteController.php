@@ -8,7 +8,6 @@ use App\Models\ClienteModel;
 
 class ReporteController extends BaseController
 {
-    // Página principal — selector de reportes
     public function index()
     {
         $vehiculoModel = new VehiculoModel();
@@ -22,41 +21,44 @@ class ReporteController extends BaseController
         return view('layout/nav') . view('admin/reportes/index', $data) . view('layout/footer');
     }
 
-    // Reporte 1: dado un vehículo → todos los clientes que lo alquilaron
     public function porVehiculo(int $vehiculoId)
     {
         $alquilerModel = new AlquilerModel();
         $vehiculoModel = new VehiculoModel();
 
-        $vehiculo   = $vehiculoModel->find($vehiculoId);
-        $alquileres = $alquilerModel->getPorVehiculo($vehiculoId);
+        $vehiculo = $vehiculoModel->find($vehiculoId);
+        if (!$vehiculo) {
+            return redirect()->to(base_url('admin/reportes'))
+                ->with('error', 'Vehículo no encontrado.');
+        }
 
         $data = [
             'vehiculo'   => $vehiculo,
-            'alquileres' => $alquileres,
+            'alquileres' => $alquilerModel->getPorVehiculo($vehiculoId),
         ];
 
         return view('layout/nav') . view('admin/reportes/por_vehiculo', $data) . view('layout/footer');
     }
 
-    // Reporte 2: dado un cliente → todos los vehículos que alquiló
     public function porCliente(int $clienteId)
     {
         $alquilerModel = new AlquilerModel();
         $clienteModel  = new ClienteModel();
 
-        $cliente    = $clienteModel->find($clienteId);
-        $alquileres = $alquilerModel->getPorCliente($clienteId);
+        $cliente = $clienteModel->find($clienteId);
+        if (!$cliente) {
+            return redirect()->to(base_url('admin/reportes'))
+                ->with('error', 'Cliente no encontrado.');
+        }
 
         $data = [
             'cliente'    => $cliente,
-            'alquileres' => $alquileres,
+            'alquileres' => $alquilerModel->getPorCliente($clienteId),
         ];
 
         return view('layout/nav') . view('admin/reportes/por_cliente', $data) . view('layout/footer');
     }
 
-    // Reporte 3: vehículos actualmente alquilados (no devueltos)
     public function activos()
     {
         $alquilerModel = new AlquilerModel();

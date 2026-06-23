@@ -12,7 +12,7 @@
             <div class="alert alert-success"><?= session()->getFlashdata('exito') ?></div>
         <?php endif; ?>
 
-        <form action="/login" method="post">
+        <form action="<?= base_url('login') ?>" method="post">
             <?= csrf_field() ?>
 
             <div class="mb-3">
