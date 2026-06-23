@@ -25,7 +25,17 @@
         <div class="alert alert-info">No hay vehículos disponibles en esta categoría.</div>
     <?php else: ?>
         <div class="row row-cols-1 row-cols-md-3 g-4">
+            <?php 
+            $contador = 0;
+            $totalVehiculos = count($vehiculos);
+            $posicionPromocion = round($totalVehiculos / 2); // Mitad de los vehículos
+            $promocionMostrada = false;
+            ?>
+            
             <?php foreach ($vehiculos as $v): ?>
+                <?php $contador++; ?>
+                
+                <!-- Tarjeta del vehículo -->
                 <div class="col">
                     <div class="card h-100 shadow-sm">
                         <?php if ($v['imagen']): ?>
@@ -61,6 +71,23 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Tarjeta de Promoción (se muestra después del vehículo en la posición central) -->
+                <?php if ($contador == $posicionPromocion && !$promocionMostrada && $contador < $totalVehiculos): ?>
+                    <?php $promocionMostrada = true; ?>
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-warning" id="promocionCard" style="background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);">
+                                <img id="promocion" src="assets/imagenes/promocion.png" class="card-img-top" style="height:200px;object-fit:cover;" alt="Imagen intermedia">
+                                <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
+                                    <h5 class="card-title text-warning fw-bold">🎉 ¡Oferta Especial!</h5>
+                                    <div class="mt-2">
+                                        <span class="badge bg-danger fs-6">🔥 Ofertas imperdibles</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                <?php endif; ?>
+                
             <?php endforeach; ?>
         </div>
     <?php endif; ?>

@@ -76,4 +76,13 @@ class VehiculoModel extends Model
     {
         return $this->update($idVehiculo, ['disponible' => 1]);
     }
+
+    // NUEVO MÉTODO - Obtener categorías únicas
+    public function getCategorias()
+    {
+        return $this->select('categoria')
+                    ->distinct()
+                    ->orderBy('categoria', 'ASC')
+                    ->findColumn('categoria') ?: [];
+    }
 }

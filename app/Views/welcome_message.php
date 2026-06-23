@@ -14,17 +14,9 @@
 <?php include 'nav.html'; ?>
 
 <!-- CONTENT -->
-<div class="container row" id="content">
-    <!-- tarjeta de promocion -->
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <img id="promocion" src="assets/imagenes/promocion.png" class="card-img-top" alt="Imagen intermedia">
-            <div class="card-body text-center">
-                <h5 class="card-title">¡Oferta Especial!</h5>
-                <p class="card-text">Producto destacado del día</p>
-            </div>
-        </div>
-    </div>
+<div class="container my-5">
+    <!-- RENDERIZAR LA LISTA DE VEHÍCULOS (YA INCLUYE LA PROMOCIÓN) -->
+    <?= view('vehiculos/lista', [ 'vehiculos' => $vehiculos ?? [], 'categorias' => $categorias ?? [], 'categoriaActual' => $categoriaActual ?? null ]) ?>
 </div>
 
 <?php include 'footer.html'; ?>
