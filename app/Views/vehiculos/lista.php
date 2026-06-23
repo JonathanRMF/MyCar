@@ -81,20 +81,42 @@ $busqueda   = $busqueda   ?? [];
         </div>
     </div>
 
-    <!-- ── FILTROS RÁPIDOS POR CATEGORÍA ─────────────────── -->
-    <div class="mb-4 d-flex gap-2 flex-wrap">
+        <!-- ── FILTROS RÁPIDOS POR CATEGORÍA ─────────────────── -->
+    <?php
+    $iconos = [
+        'Auto'       => 'ti-car',
+        'Camioneta'  => 'ti-truck',
+        'SUV'        => 'ti-car-suv',
+        'Deportivo'  => 'ti-steering-wheel',
+        'Van'        => 'ti-bus',
+    ];
+    ?>
+
+    <style>
+    .cat-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 1.5rem; }
+.cat-card { display: flex; flex-direction: row; align-items: center; gap: 10px; padding: 12px 22px; border: 1px solid #dee2e6; border-radius: 12px; background: #fff; text-decoration: none; color: #6c757d; transition: border-color 0.15s, background 0.15s; white-space: nowrap; }
+.cat-card:hover { border-color: #adb5bd; background: #f8f9fa; color: #495057; text-decoration: none; }
+.cat-card.activa { border: 2px solid #0d6efd; background: #e7f1ff; color: #0a58ca; }
+.cat-card i { font-size: 20px; }
+.cat-card span { font-size: 14px; }
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <div class="cat-grid">
         <a href="<?= base_url('vehiculos') ?>"
-           class="btn <?= !isset($categoriaActual) && empty($busqueda) ? 'btn-primary' : 'btn-outline-primary' ?>">
-            Todos
+        class="cat-card <?= !isset($categoriaActual) && empty(array_filter($busqueda ?? [])) ? 'activa' : '' ?>">
+            <i class="ti ti-layout-grid"></i>
+            <span>Todos</span>
         </a>
         <?php foreach ($categorias as $cat): ?>
             <a href="<?= base_url('vehiculos/categoria/' . $cat) ?>"
-               class="btn <?= (isset($categoriaActual) && $categoriaActual === $cat) ? 'btn-primary' : 'btn-outline-primary' ?>">
-                <?= $cat ?>
+            class="cat-card <?= (isset($categoriaActual) && $categoriaActual === $cat) ? 'activa' : '' ?>">
+                <i class="ti <?= $iconos[$cat] ?? 'ti-car' ?>"></i>
+                <span><?= esc($cat) ?></span>
             </a>
         <?php endforeach; ?>
     </div>
-
     <!-- ── RESULTADO ──────────────────────────────────────── -->
     <?php if (!empty($busqueda) && array_filter($busqueda)): ?>
         <p class="text-muted small mb-3">
