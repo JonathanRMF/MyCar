@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\UsuarioModel;
-use App\Models\ClienteModel;
+use App\Services\UsuarioService;
 
 class AuthController extends BaseController
 {
@@ -23,28 +22,20 @@ class AuthController extends BaseController
         $email    = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        $usuarioModel = new UsuarioModel();
-        $usuario = $usuarioModel->findByEmail($email);
+        $usuarioService = new UsuarioService();
+        $usuario = $usuarioService->login($email, $password);
 
-        // Verificamos que exista el usuario y que la contraseña sea correcta
-        if (!$usuario || !password_verify($password, $usuario['password'])) {
+        if (!$usuario) {
             return redirect()->to('/login')
-                ->with('error', 'Email o contraseña incorrectos.');
+                ->with('error', $usuarioService->getErrors()['login'] ?? 'Email o contraseña incorrectos.');
         }
 
-        if (!$usuario['activo']) {
-            return redirect()->to('/login')
-                ->with('error', 'Tu cuenta está desactivada.');
-        }
-
-        // Guardamos los datos en la sesión
         session()->set([
             'usuario_id' => $usuario['id'],
             'nombre'     => $usuario['nombre'],
             'rol'        => $usuario['rol'],
         ]);
 
-        // Redirigimos según el rol
         if ($usuario['rol'] === 'admin') {
             return redirect()->to('/admin/vehiculos');
         }
@@ -79,34 +70,29 @@ class AuthController extends BaseController
                 ->withInput();
         }
 
-        $usuarioModel = new UsuarioModel();
-        $clienteModel = new ClienteModel();
+        $usuarioService = new UsuarioService();
 
-        // Verificamos que el email no esté registrado
-        if ($usuarioModel->findByEmail($this->request->getPost('email'))) {
+        $usuarioId = $usuarioService->registerClientUser(
+            [
+                'email'    => $this->request->getPost('email'),
+                'password' => $this->request->getPost('password'),
+                'rol'      => 'cliente',
+            ],
+            [
+                'nombre'     => $this->request->getPost('nombre'),
+                'apellido'   => $this->request->getPost('apellido'),
+                'direccion'  => $this->request->getPost('direccion'),
+                'telefono'   => $this->request->getPost('telefono'),
+                'fecha_alta' => date('Y-m-d'),
+                'activo'     => 1,
+            ]
+        );
+
+        if ($usuarioId === false) {
             return redirect()->to('/register')
-                ->with('error', 'Ese email ya está registrado.');
+                ->with('errores', $usuarioService->getErrors())
+                ->withInput();
         }
-
-        // 1) Creamos el usuario
-        $usuarioId = $usuarioModel->insert([
-            'nombre'   => $this->request->getPost('nombre'),
-            'email'    => $this->request->getPost('email'),
-            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'rol'      => 'cliente',
-            'activo'   => 1,
-        ]);
-
-        // 2) Creamos el cliente vinculado al usuario
-        $clienteModel->insert([
-            'usuario_id' => $usuarioId,
-            'apellido'   => $this->request->getPost('apellido'),
-            'nombre'     => $this->request->getPost('nombre'),
-            'direccion'  => $this->request->getPost('direccion'),
-            'telefono'   => $this->request->getPost('telefono'),
-            'fecha_alta' => date('Y-m-d'),
-            'activo'     => 1,
-        ]);
 
         return redirect()->to('/login')
             ->with('exito', 'Cuenta creada con éxito. Ya podés iniciar sesión.');

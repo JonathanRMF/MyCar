@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ClienteModel;
-use App\Models\UsuarioModel;
+use App\Services\UsuarioService;
 
 class ClienteController extends BaseController
 {
@@ -35,32 +35,29 @@ class ClienteController extends BaseController
                 ->withInput();
         }
 
-        $usuarioModel = new UsuarioModel();
-        $clienteModel = new ClienteModel();
+        $usuarioService = new UsuarioService();
 
-        if ($usuarioModel->findByEmail($this->request->getPost('email'))) {
+        $usuarioId = $usuarioService->registerClientUser(
+            [
+                'email'    => $this->request->getPost('email'),
+                'password' => $this->request->getPost('password'),
+                'rol'      => 'cliente',
+            ],
+            [
+                'nombre'     => $this->request->getPost('nombre'),
+                'apellido'   => $this->request->getPost('apellido'),
+                'direccion'  => $this->request->getPost('direccion'),
+                'telefono'   => $this->request->getPost('telefono'),
+                'fecha_alta' => date('Y-m-d'),
+                'activo'     => 1,
+            ]
+        );
+
+        if ($usuarioId === false) {
             return redirect()->to('/admin/clientes/crear')
-                ->with('error', 'Ese email ya está registrado.')
+                ->with('errores', $usuarioService->getErrors())
                 ->withInput();
         }
-
-        $usuarioId = $usuarioModel->insert([
-            'nombre'   => $this->request->getPost('nombre'),
-            'email'    => $this->request->getPost('email'),
-            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'rol'      => 'cliente',
-            'activo'   => 1,
-        ]);
-
-        $clienteModel->insert([
-            'usuario_id' => $usuarioId,
-            'nombre'     => $this->request->getPost('nombre'),
-            'apellido'   => $this->request->getPost('apellido'),
-            'direccion'  => $this->request->getPost('direccion'),
-            'telefono'   => $this->request->getPost('telefono'),
-            'fecha_alta' => date('Y-m-d'),
-            'activo'     => 1,
-        ]);
 
         return redirect()->to('/admin/clientes')
             ->with('exito', 'Cliente creado correctamente.');
