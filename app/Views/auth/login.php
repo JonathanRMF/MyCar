@@ -1,5 +1,3 @@
-<?= view('layout/nav') ?>
-
 <div class="container mt-5" style="max-width: 420px;">
     <div class="card p-4 shadow-sm">
         <h2 class="mb-4 text-center">Iniciar sesión</h2>
@@ -30,9 +28,7 @@
         </form>
 
         <p class="text-center mt-3 mb-0">
-            ¿No tenés cuenta? <a href="/register">Registrate</a>
+            ¿No tenés cuenta? <a href="<?= base_url('register') ?>">Registrate</a>
         </p>
     </div>
 </div>
-
-<?= view('layout/footer') ?>

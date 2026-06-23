@@ -27,6 +27,6 @@
             </div>
         </div>
 
-        <a href="/vehiculos" class="btn btn-outline-primary">Ver más vehículos</a>
+        <a href="<?= base_url('vehiculos') ?>" class="btn btn-outline-primary">Ver más vehículos</a>
     </div>
 </div>

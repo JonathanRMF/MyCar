@@ -12,7 +12,7 @@ class UsuarioModel extends Model
     protected $returnType       = 'array';
     protected $useTimestamps    = false;
 
-    protected $allowedFields = ['nombre', 'email', 'password', 'rol', 'created_at'];
+    protected $allowedFields = ['nombre', 'email', 'password', 'rol', 'activo', 'created_at'];
 
     public function findByEmail(string $email)
     {

@@ -34,9 +34,9 @@ class AlquilerModel extends Model
 
     public function registrarReserva(array $data)
     {
-        $data['estado'] = 'reservado';
+        $data['estado']   = 'reservado';
         $data['devuelto'] = 0;
-        $data['activo'] = 1;
+        $data['activo']   = 1;
 
         return $this->insert($data);
     }
@@ -99,6 +99,30 @@ class AlquilerModel extends Model
             ->join('vehiculos v', 'v.id = a.vehiculo_id')
             ->where('a.estado', 'alquilado')
             ->where('a.activo', 1)
+            ->get()
+            ->getResultArray();
+    }
+
+    public function getPorVehiculo(int $vehiculoId)
+    {
+        return $this->db->table('alquileres a')
+            ->select('a.*, c.nombre, c.apellido, c.telefono')
+            ->join('clientes c', 'c.id = a.cliente_id')
+            ->where('a.vehiculo_id', $vehiculoId)
+            ->where('a.activo', 1)
+            ->orderBy('a.id', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+
+    public function getPorCliente(int $clienteId)
+    {
+        return $this->db->table('alquileres a')
+            ->select('a.*, v.marca, v.modelo, v.categoria')
+            ->join('vehiculos v', 'v.id = a.vehiculo_id')
+            ->where('a.cliente_id', $clienteId)
+            ->where('a.activo', 1)
+            ->orderBy('a.id', 'DESC')
             ->get()
             ->getResultArray();
     }

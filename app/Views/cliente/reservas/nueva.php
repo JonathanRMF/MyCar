@@ -1,6 +1,6 @@
 <div class="container my-5" style="max-width:560px;">
 
-    <a href="/vehiculos" class="btn btn-outline-secondary btn-sm mb-4">← Volver</a>
+    <a href="<?= base_url('vehiculos') ?>" class="btn btn-outline-secondary btn-sm mb-4">← Volver</a>
     <h2 class="mb-4">Nueva reserva</h2>
 
     <?php $errores = session()->getFlashdata('errores') ?? []; ?>
@@ -28,21 +28,21 @@
     </div>
 
     <!-- Formulario -->
-    <form action="/reservas/guardar" method="post">
+    <form action="<?= base_url('reservas/guardar') ?>" method="post">
         <?= csrf_field() ?>
         <input type="hidden" name="vehiculo_id" value="<?= $vehiculo['id'] ?>">
 
         <div class="mb-3">
             <label class="form-label">Fecha de inicio</label>
             <input type="date" name="fecha_desde" class="form-control"
-                    min="<?= date('Y-m-d') ?>"
-                    value="<?= old('fecha_desde', date('Y-m-d')) ?>" required>
+                   min="<?= date('Y-m-d') ?>"
+                   value="<?= old('fecha_desde', date('Y-m-d')) ?>" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Cantidad de días</label>
             <input type="number" name="cantidad_dias" id="cantidad_dias" class="form-control"
-                    min="1" value="<?= old('cantidad_dias', 1) ?>" required>
+                   min="1" value="<?= old('cantidad_dias', 1) ?>" required>
         </div>
 
         <!-- Cálculo en tiempo real -->
@@ -69,9 +69,8 @@
 </div>
 
 <script>
-    // Calcula el total en tiempo real mientras el usuario escribe
-    const precioDia  = <?= $vehiculo['precio_dia'] ?>;
-    const inputDias  = document.getElementById('cantidad_dias');
+    const precioDia    = <?= $vehiculo['precio_dia'] ?>;
+    const inputDias    = document.getElementById('cantidad_dias');
     const diasDisplay  = document.getElementById('dias-display');
     const totalDisplay = document.getElementById('total-display');
 

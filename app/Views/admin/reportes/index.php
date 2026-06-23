@@ -21,7 +21,7 @@
                             <?php endforeach; ?>
                         </select>
                         <button type="submit" class="btn btn-primary w-100"
-                            onclick="this.form.action='/admin/reportes/vehiculo/'+this.form.vehiculo_id.value; return true;">
+                            onclick="this.form.action='<?= base_url('admin/reportes/vehiculo/') ?>'+this.form.vehiculo_id.value; return true;">
                             Ver reporte
                         </button>
                     </form>
@@ -45,7 +45,7 @@
                             <?php endforeach; ?>
                         </select>
                         <button type="submit" class="btn btn-primary w-100"
-                            onclick="this.form.action='/admin/reportes/cliente/'+this.form.cliente_id.value; return true;">
+                            onclick="this.form.action='<?= base_url('admin/reportes/cliente/') ?>'+this.form.cliente_id.value; return true;">
                             Ver reporte
                         </button>
                     </form>
@@ -59,7 +59,7 @@
                 <div class="card-body">
                     <h5 class="card-title">📋 Activos ahora</h5>
                     <p class="text-muted small">Vehículos actualmente alquilados y quién los tiene.</p>
-                    <a href="/admin/reportes/activos" class="btn btn-primary w-100 mt-3">
+                    <a href="<?= base_url('admin/reportes/activos') ?>" class="btn btn-primary w-100 mt-3">
                         Ver reporte
                     </a>
                 </div>

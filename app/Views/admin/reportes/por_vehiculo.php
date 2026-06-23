@@ -1,7 +1,7 @@
 <?php $alquileres = $alquileres ?? []; ?>
 
 <div class="container my-5">
-    <a href="/admin/reportes" class="btn btn-outline-secondary btn-sm mb-4">← Volver</a>
+    <a href="<?= base_url('admin/reportes') ?>" class="btn btn-outline-secondary btn-sm mb-4">← Volver</a>
 
     <h2 class="mb-1">Reporte por vehículo</h2>
     <p class="text-muted mb-4">
@@ -34,10 +34,12 @@
                         <td><?= $a['cantidad_dias'] ?></td>
                         <td>$<?= number_format($a['monto_total'], 2) ?></td>
                         <td>
-                            <?php if ($a['devuelto']): ?>
-                                <span class="badge bg-secondary">Devuelto</span>
+                            <?php if ($a['estado'] === 'reservado'): ?>
+                                <span class="badge bg-info text-dark">Reservado</span>
+                            <?php elseif ($a['estado'] === 'alquilado'): ?>
+                                <span class="badge bg-warning text-dark">Alquilado</span>
                             <?php else: ?>
-                                <span class="badge bg-warning text-dark">Activo</span>
+                                <span class="badge bg-secondary">Devuelto</span>
                             <?php endif; ?>
                         </td>
                     </tr>

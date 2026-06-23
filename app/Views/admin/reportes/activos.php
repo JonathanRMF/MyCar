@@ -1,7 +1,7 @@
 <?php $alquileres = $alquileres ?? []; ?>
 
 <div class="container my-5">
-    <a href="/admin/reportes" class="btn btn-outline-secondary btn-sm mb-4">← Volver</a>
+    <a href="<?= base_url('admin/reportes') ?>" class="btn btn-outline-secondary btn-sm mb-4">← Volver</a>
 
     <h2 class="mb-4">Vehículos actualmente alquilados</h2>
 
@@ -24,7 +24,6 @@
             <tbody>
                 <?php foreach ($alquileres as $a): ?>
                     <?php
-                        // Calculamos la fecha de vencimiento
                         $fechaVence = date('Y-m-d', strtotime($a['fecha_desde'] . ' +' . $a['cantidad_dias'] . ' days'));
                         $vencido    = $fechaVence < date('Y-m-d');
                     ?>

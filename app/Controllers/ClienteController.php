@@ -104,15 +104,20 @@ class ClienteController extends BaseController
 
     public function bajaLogica(int $id)
     {
-        $model   = new ClienteModel();
-        $cliente = $model->find($id);
+        $clienteModel = new ClienteModel();
+        $cliente      = $clienteModel->find($id);
 
         if (!$cliente) {
             return redirect()->to(base_url('admin/clientes'))
                 ->with('error', 'Cliente no encontrado.');
         }
 
-        $model->bajaLogica($id);
+        // Desactivar cliente
+        $clienteModel->bajaLogica($id);
+
+        // Desactivar su usuario vinculado
+        $usuarioModel = new UsuarioModel();
+        $usuarioModel->update($cliente['usuario_id'], ['activo' => 0]);
 
         return redirect()->to(base_url('admin/clientes'))
             ->with('exito', 'Cliente dado de baja correctamente.');

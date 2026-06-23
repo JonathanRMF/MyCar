@@ -8,7 +8,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Alquileres</h2>
-        <a href="/admin/reportes" class="btn btn-outline-secondary">Ver reportes</a>
+        <a href="<?= base_url('admin/reportes') ?>" class="btn btn-outline-secondary">Ver reportes</a>
     </div>
 
     <table class="table table-bordered table-hover">
@@ -37,17 +37,27 @@
                         <td><?= $a['cantidad_dias'] ?></td>
                         <td>$<?= number_format($a['monto_total'], 2) ?></td>
                         <td>
-                            <?php if ($a['devuelto']): ?>
+                            <?php if ($a['estado'] === 'reservado'): ?>
+                                <span class="badge bg-info text-dark">Reservado</span>
+                            <?php elseif ($a['estado'] === 'alquilado'): ?>
+                                <span class="badge bg-warning text-dark">Alquilado</span>
+                            <?php elseif ($a['estado'] === 'finalizado'): ?>
                                 <span class="badge bg-secondary">Devuelto</span>
                             <?php else: ?>
-                                <span class="badge bg-warning text-dark">Activo</span>
+                                <span class="badge bg-light text-dark"><?= esc($a['estado']) ?></span>
                             <?php endif; ?>
                         </td>
                         <td>
-                            <?php if (!$a['devuelto']): ?>
-                                <a href="/admin/alquileres/devolucion/<?= $a['id'] ?>"
+                            <?php if ($a['estado'] === 'reservado'): ?>
+                                <a href="<?= base_url('admin/alquileres/confirmar/' . $a['id']) ?>"
+                                    class="btn btn-primary btn-sm"
+                                    onclick="return confirm('¿Confirmar el alquiler?')">
+                                    Confirmar
+                                </a>
+                            <?php elseif ($a['estado'] === 'alquilado'): ?>
+                                <a href="<?= base_url('admin/alquileres/devolucion/' . $a['id']) ?>"
                                     class="btn btn-success btn-sm"
-                                    onclick="return confirm('¿Confirmar devolución?')">
+                                    onclick="return confirm('¿Registrar devolución?')">
                                     Devolver
                                 </a>
                             <?php else: ?>
