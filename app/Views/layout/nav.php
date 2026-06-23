@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="<?= base_url('assets/css/nav.css') ?>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Car</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/nav.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
 </head>
 <body>
 
@@ -70,12 +74,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?= base_url('mis-reservas') ?>">
                             <i class="fas fa-calendar-alt me-1"></i> Mis reservas
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?= base_url('historial') ?>">
                             <i class="fas fa-history me-1"></i> Historial
                         </a>
                     </li>
@@ -123,5 +127,3 @@
         </div>
     </nav>
 </header>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

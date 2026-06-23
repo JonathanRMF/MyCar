@@ -18,6 +18,52 @@ class VehiculoController extends BaseController
         return view('layout/nav') . view('vehiculos/lista', $data) . view('layout/footer');
     }
 
+    public function buscar()
+    {
+        $model      = new VehiculoModel();
+        $q          = $this->request->getGet('q');
+        $categoria  = $this->request->getGet('categoria');
+        $precioMin  = $this->request->getGet('precio_min');
+        $precioMax  = $this->request->getGet('precio_max');
+        $plazas     = $this->request->getGet('plazas');
+
+        $builder = $model->where('activo', 1)->where('disponible', 1);
+
+        if ($q) {
+            $builder->groupStart()
+                        ->like('marca', $q)
+                        ->orLike('modelo', $q)
+                        ->orLike('descripcion', $q)
+                    ->groupEnd();
+        }
+        if ($categoria) {
+            $builder->where('categoria', $categoria);
+        }
+        if ($precioMin) {
+            $builder->where('precio_dia >=', (float) $precioMin);
+        }
+        if ($precioMax) {
+            $builder->where('precio_dia <=', (float) $precioMax);
+        }
+        if ($plazas) {
+            $builder->where('plazas >=', (int) $plazas);
+        }
+
+        $data = [
+            'vehiculos'      => $builder->findAll(),
+            'categorias'     => ['Auto', 'Camioneta', 'SUV', 'Deportivo', 'Van'],
+            'busqueda'       => [
+                'q'          => $q,
+                'categoria'  => $categoria,
+                'precio_min' => $precioMin,
+                'precio_max' => $precioMax,
+                'plazas'     => $plazas,
+            ],
+        ];
+
+        return view('layout/nav') . view('vehiculos/lista', $data) . view('layout/footer');
+    }
+
     public function porCategoria(string $categoria)
     {
         $model = new VehiculoModel();

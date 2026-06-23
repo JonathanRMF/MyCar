@@ -128,4 +128,54 @@ class AlquilerController extends BaseController
         return redirect()->to(base_url('admin/alquileres'))
             ->with('exito', 'Devolución registrada correctamente.');
     }
+
+    // ── CLIENTE: Mis Reservas ─────────────────────────────────
+
+    public function misReservas()
+    {
+        $clienteModel = new ClienteModel();
+        $cliente      = $clienteModel->findByUsuarioId(session()->get('usuario_id'));
+
+        if (!$cliente) {
+            return redirect()->to(base_url('vehiculos'))
+                ->with('error', 'No se encontró tu perfil de cliente.');
+        }
+
+        $alquilerModel = new AlquilerModel();
+        $reservas = $alquilerModel->db->table('alquileres a')
+            ->select('a.*, v.marca, v.modelo, v.categoria, v.precio_dia')
+            ->join('vehiculos v', 'v.id = a.vehiculo_id')
+            ->where('a.cliente_id', $cliente['id'])
+            ->whereIn('a.estado', ['reservado', 'alquilado'])
+            ->where('a.activo', 1)
+            ->orderBy('a.id', 'DESC')
+            ->get()->getResultArray();
+
+        return view('layout/nav') . view('cliente/reservas/mis_reservas', ['reservas' => $reservas]) . view('layout/footer');
+    }
+
+    // ── CLIENTE: Historial ────────────────────────────────────
+
+    public function historial()
+    {
+        $clienteModel = new ClienteModel();
+        $cliente      = $clienteModel->findByUsuarioId(session()->get('usuario_id'));
+
+        if (!$cliente) {
+            return redirect()->to(base_url('vehiculos'))
+                ->with('error', 'No se encontró tu perfil de cliente.');
+        }
+
+        $alquilerModel = new AlquilerModel();
+        $historial = $alquilerModel->db->table('alquileres a')
+            ->select('a.*, v.marca, v.modelo, v.categoria, v.precio_dia')
+            ->join('vehiculos v', 'v.id = a.vehiculo_id')
+            ->where('a.cliente_id', $cliente['id'])
+            ->where('a.estado', 'finalizado')
+            ->where('a.activo', 1)
+            ->orderBy('a.id', 'DESC')
+            ->get()->getResultArray();
+
+        return view('layout/nav') . view('cliente/reservas/historial', ['historial' => $historial]) . view('layout/footer');
+    }
 }

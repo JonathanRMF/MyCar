@@ -13,7 +13,8 @@ $routes->get('/register', 'AuthController::register');
 $routes->post('/register','AuthController::registerProcess');
 $routes->get('/logout',   'AuthController::logout');
 
-$routes->get('/vehiculos', 'VehiculoController::index');
+$routes->get('/vehiculos',                      'VehiculoController::index');
+$routes->get('/vehiculos/buscar',               'VehiculoController::buscar');
 $routes->get('/vehiculos/categoria/(:segment)', 'VehiculoController::porCategoria/$1');
 $routes->get('/vehiculos/detalle/(:num)',        'VehiculoController::detalle/$1');
 
@@ -21,6 +22,8 @@ $routes->get('/vehiculos/detalle/(:num)',        'VehiculoController::detalle/$1
 $routes->get('/reservas/nueva/(:num)',  'AlquilerController::nuevaReserva/$1',  ['filter' => 'auth']);
 $routes->post('/reservas/guardar',     'AlquilerController::guardarReserva',    ['filter' => 'auth']);
 $routes->get('/reservas/confirmacion', 'AlquilerController::confirmacion',      ['filter' => 'auth']);
+$routes->get('mis-reservas',          'AlquilerController::misReservas',       ['filter' => 'auth']);
+$routes->get('historial',             'AlquilerController::historial',         ['filter' => 'auth']);
 
 // ─── ADMIN ───────────────────────────────────────────────────
 $routes->group('admin', ['filter' => 'auth:admin'], function($routes) {
