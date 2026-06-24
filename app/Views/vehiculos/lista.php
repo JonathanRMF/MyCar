@@ -93,12 +93,12 @@ $busqueda   = $busqueda   ?? [];
     ?>
 
     <style>
-    .cat-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 1.5rem; }
-.cat-card { display: flex; flex-direction: row; align-items: center; gap: 10px; padding: 12px 22px; border: 1px solid #dee2e6; border-radius: 12px; background: #fff; text-decoration: none; color: #6c757d; transition: border-color 0.15s, background 0.15s; white-space: nowrap; }
-.cat-card:hover { border-color: #adb5bd; background: #f8f9fa; color: #495057; text-decoration: none; }
-.cat-card.activa { border: 2px solid #0d6efd; background: #e7f1ff; color: #0a58ca; }
-.cat-card i { font-size: 20px; }
-.cat-card span { font-size: 14px; }
+        .cat-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 1.5rem; }
+        .cat-card { display: flex; flex-direction: row; align-items: center; gap: 10px; padding: 12px 22px; border: 1px solid #dee2e6; border-radius: 12px; background: #fff; text-decoration: none; color: #6c757d; transition: border-color 0.15s, background 0.15s; white-space: nowrap; }
+        .cat-card:hover { border-color: #adb5bd; background: #f8f9fa; color: #495057; text-decoration: none; }
+        .cat-card.activa { border: 2px solid #0d6efd; background: #e7f1ff; color: #0a58ca; }
+        .cat-card i { font-size: 20px; }
+        .cat-card span { font-size: 14px; }
     </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">

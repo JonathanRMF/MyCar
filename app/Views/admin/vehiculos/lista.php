@@ -8,7 +8,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Vehículos</h2>
-        <a href="/admin/vehiculos/crear" class="btn btn-primary">+ Nuevo vehículo</a>
+        <a href="<?= base_url('admin/vehiculos/crear') ?>" class="btn btn-primary">+ Nuevo vehículo</a>
     </div>
 
     <table class="table table-bordered table-hover">

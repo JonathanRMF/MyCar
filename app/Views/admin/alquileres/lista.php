@@ -5,6 +5,9 @@
     <?php if (session()->getFlashdata('exito')): ?>
         <div class="alert alert-success"><?= session()->getFlashdata('exito') ?></div>
     <?php endif; ?>
+    <?php if (session()->getFlashdata('error')): ?>
+        <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+    <?php endif; ?>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Alquileres</h2>
@@ -43,21 +46,30 @@
                                 <span class="badge bg-warning text-dark">Alquilado</span>
                             <?php elseif ($a['estado'] === 'finalizado'): ?>
                                 <span class="badge bg-secondary">Devuelto</span>
+                            <?php elseif ($a['estado'] === 'cancelado'): ?>
+                                <span class="badge bg-danger">Cancelado</span>
                             <?php else: ?>
                                 <span class="badge bg-light text-dark"><?= esc($a['estado']) ?></span>
                             <?php endif; ?>
                         </td>
                         <td>
                             <?php if ($a['estado'] === 'reservado'): ?>
-                                <a href="<?= base_url('admin/alquileres/confirmar/' . $a['id']) ?>"
-                                    class="btn btn-primary btn-sm"
-                                    onclick="return confirm('¿Confirmar el alquiler?')">
-                                    Confirmar
-                                </a>
+                                <div class="d-flex gap-1">
+                                    <a href="<?= base_url('admin/alquileres/confirmar/' . $a['id']) ?>"
+                                       class="btn btn-primary btn-sm"
+                                       onclick="return confirm('¿Confirmar el alquiler?')">
+                                        Confirmar
+                                    </a>
+                                    <a href="<?= base_url('admin/alquileres/rechazar/' . $a['id']) ?>"
+                                       class="btn btn-danger btn-sm"
+                                       onclick="return confirm('¿Rechazar esta reserva?')">
+                                        Rechazar
+                                    </a>
+                                </div>
                             <?php elseif ($a['estado'] === 'alquilado'): ?>
                                 <a href="<?= base_url('admin/alquileres/devolucion/' . $a['id']) ?>"
-                                    class="btn btn-success btn-sm"
-                                    onclick="return confirm('¿Registrar devolución?')">
+                                   class="btn btn-success btn-sm"
+                                   onclick="return confirm('¿Registrar devolución?')">
                                     Devolver
                                 </a>
                             <?php else: ?>

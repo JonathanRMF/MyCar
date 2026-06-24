@@ -1,9 +1,9 @@
 <div class="container my-5" style="max-width:760px;">
-    <a href="/vehiculos" class="btn btn-outline-secondary btn-sm mb-4">← Volver</a>
+    <a href="<?= base_url('vehiculos') ?>" class="btn btn-outline-secondary btn-sm mb-4">← Volver</a>
 
     <div class="card shadow-sm">
         <?php if ($vehiculo['imagen']): ?>
-            <img src="/assets/imagenes/<?= esc($vehiculo['imagen']) ?>"
+            <img src="<?= base_url('/assets/imagenes/' . esc($vehiculo['imagen'])) ?>"
                 class="card-img-top" style="height:320px;object-fit:cover;"
                 alt="<?= esc($vehiculo['marca']) ?>">
         <?php endif; ?>
@@ -33,7 +33,7 @@
 
         <div class="card-footer">
             <?php if (session()->get('usuario_id')): ?>
-                <a href="/reservas/nueva/<?= $vehiculo['id'] ?>" class="btn btn-primary w-100">
+                <a href="<?= base_url('reservas/nueva/' . $vehiculo['id']) ?>" class="btn btn-primary w-100">
                     Reservar este vehículo
                 </a>
             <?php else: ?>
